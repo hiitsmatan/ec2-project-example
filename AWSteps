@@ -1,0 +1,35 @@
+************** AWSteps **************
+1.	Create EC2 instance for the backend (mongoDB and express) ## TODO - specifiy sg, user data.
+	1a. Security group rules:
+			1. ssh port 22, source: My IP
+			2. custom tcp port 27017, source: My IP
+			3. more...
+	1b. User data:
+			#Refer to 'whist-backened-userdata-script'
+			
+2.	Create EBS volume for mongodb consistent storage (gp2)
+	2a.	Make sure the instance is in the same availab zone as the EBS volume
+	
+3.	Attach the EBS volume to the EC2-backend
+
+4.	SSH into the EC2 and then:
+	4a.	Make sure the instance is in the same availab zone as the EBS volume
+	4b.	SSH into the EC2-backend instance and attach the EBS volume using the following commands:
+			1. sudo mkfs -t ext4 /dev/xvdf
+			2. sudo mkdir /dbvolume
+			3. sudo mount /dev/xvdf /dbvolume/
+	4c. Run the following docker commands to start services:
+			1. mongo: docker run -d --name mongodb -v /dbvolume/mongo-data:/data/db -p 27017:27017 -e MONGO_INITDB_ROOT_USERNAME=mongo -e MONGO_INITDB_ROOT_PASSWORD=mongo mongo
+			2. express: docker run -d -p 3005:3005 matanski/nodexpress:yuvali2
+			
+5. Create DB for the first time (in the next time it will be already be configured because of the docker -v volume option) with mongo compass via: mongodb://mongo:mongo@*VM_PUBLIC_IP*:27017/
+
+
+
+
+
+
+
+	
+			
+

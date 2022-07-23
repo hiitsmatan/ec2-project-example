@@ -1,0 +1,14 @@
+#!/bin/bash
+######## EC2 Backend Script ########
+
+sudo su
+
+## install docker ##
+curl -fsSL get.docker.com -o get-docker.sh
+sudo sh get-docker.sh
+
+## pull the mongo image from dockerhub ##
+docker pull mongo:latest
+
+## pull the backend custom image from dockerhub ##
+docker pull matanski/nodexpress:yuvali2
