@@ -38,16 +38,18 @@
   </div>
 </template>
 <script>
+import { useUrlStore } from "../stores/apiUrl";
+const storeUrl = useUrlStore();
 export default {
   name: "statsView",
   methods: {
     async getProducts() {
-      const resp = await fetch("http://localhost:3005/products");
+      const resp = await fetch(`${storeUrl.url}/products`);
       const data = await resp.json();
       return data;
     },
     async getPurchases() {
-      const resp = await fetch("http://localhost:3005/purchases");
+      const resp = await fetch(`${storeUrl.url}/purchases`);
       const data = await resp.json();
       return data;
     },

@@ -25,8 +25,12 @@
   </div>
 </template>
 <script>
-import { useProductStore } from '../stores/productToEdit';
-const storeProduct = useProductStore()
+import { useProductStore } from "../stores/productToEdit";
+const storeProduct = useProductStore();
+
+import { useUrlStore } from "../stores/apiUrl";
+const storeUrl = useUrlStore();
+
 export default {
   name: "EditProductModal",
   methods: {
@@ -42,7 +46,7 @@ export default {
         this.product.image
       ) {
         const resp = await fetch(
-          `http://localhost:3005/products/${this.product._id}`,
+          `${storeUrl.url}/products/${this.product._id}`,
           {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
@@ -56,7 +60,7 @@ export default {
     },
     async getProduct() {
       const resp = await fetch(
-        `http://localhost:3005/products/${storeProduct.product}`,
+        `${storeUrl.url}/products/${storeProduct.product}`
       );
       const data = await resp.json();
       return data;

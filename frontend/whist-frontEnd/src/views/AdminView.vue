@@ -32,6 +32,8 @@ import EditProductModal from "../components/EditProductModal.vue";
 import AddProductModal from "../components/AddProductModal.vue";
 
 import { useProductStore } from "../stores/productToEdit";
+import { useUrlStore } from '../stores/apiUrl';
+const storeUrl = useUrlStore()
 const storeProduct = useProductStore()
 export default {
   name: "adminView",
@@ -41,7 +43,7 @@ export default {
         this.products = await this.getProducts();
     },
     async getProducts() {
-      const resp = await fetch("http://localhost:3005/products");
+      const resp = await fetch(`${storeUrl.url}/products`);
       const data = await resp.json();
       return data;
     },
@@ -54,7 +56,7 @@ export default {
     },
     async deleteProduct(id) {
       if (confirm("Are you sure you want to delete this product?")) {
-        const resp = await fetch(`http://localhost:3005/products/${id}`, {
+        const resp = await fetch(`${storeUrl.url}/products/${id}`, {
           method: "DELETE",
         });
         if (!resp.ok) {

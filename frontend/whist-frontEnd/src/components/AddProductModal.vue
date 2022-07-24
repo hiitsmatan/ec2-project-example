@@ -23,6 +23,8 @@
   </div>
 </template>
 <script>
+import { useUrlStore } from "../stores/apiUrl";
+const storeUrl = useUrlStore();
 export default {
   name: "AddProductModal",
   methods: {
@@ -36,7 +38,7 @@ export default {
         this.product.price &&
         this.product.image
       ) {
-        const resp = await fetch(`http://localhost:3005/products`, {
+        const resp = await fetch(`${storeUrl.url}/products`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(this.product),

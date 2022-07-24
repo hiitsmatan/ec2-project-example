@@ -44,13 +44,14 @@
   </div>
 </template>
 <script>
+import { useUrlStore } from '../stores/apiUrl';
 import SingleProduct from "../components/SingleProduct.vue";
 export default {
   name: "HomeView",
   components: { SingleProduct },
   methods: {
     async getProducts() {
-      const resp = await fetch("http://localhost:3005/products");
+      const resp = await fetch(`${useUrlStore().url}/products`);
       const data = await resp.json();
       return data;
     },
@@ -116,7 +117,7 @@ export default {
         date: today,
         totalPrice: this.totalPrice
       };
-      const purchaseResp = await fetch("http://localhost:3005/purchases", {
+      const purchaseResp = await fetch(`${useUrlStore().url}/purchases`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(invoce),
@@ -141,7 +142,7 @@ export default {
         } else {
             newProduct = {...product}
         }
-        fetch(`http://localhost:3005/products/${product._id}`, {
+        fetch(`${useUrlStore().url}/products/${product._id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newProduct),
