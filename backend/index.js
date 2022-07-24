@@ -4,7 +4,7 @@ const cors = require('cors');
 const productsCtrl = require('./controllers/productsCtrl')
 const purchasesCtrl = require('./controllers/purchasesCtrl')
 
-const port = 3005
+const port = 3005;
 
 require ('./configs/database')
 
