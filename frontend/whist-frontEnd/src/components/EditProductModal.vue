@@ -36,6 +36,7 @@ export default {
   methods: {
     closeModal() {
       this.product = {};
+      this.$emit("re-fetch");
       this.$emit("close-modal");
     },
     async saveAndClose() {

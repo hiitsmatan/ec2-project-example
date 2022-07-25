@@ -19,6 +19,7 @@
               v-if="editProduct"
               :productId="product._id"
               @close-modal="toggleEdit"
+              @re-fetch="reFetch()"
             />
             <AddProductModal v-if="addProduct" @close-modal="toggleAdd" @re-fetch="reFetch()" />
           </td>

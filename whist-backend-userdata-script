@@ -13,4 +13,4 @@ sudo systemctl enable docker #Enable docker so it will auto start when booted
 docker pull mongo:latest
 
 ## pull the backend custom image from dockerhub ##
-docker pull matanski/nodexpress:yuvali5
+docker pull matanski/nodexpress:yuvali6
