@@ -10,7 +10,7 @@
 			- custom tcp port 3005, source: ALL
 			- custom tcp port 3005, source: Frontend-SG
 			- HTTP port 80, source: Frontend-SG
-	2. EC2 instance *User Data*: [Refer to 'whist-backened-userdata-script'](./whist-backened-userdata-script.sh)
+	2. EC2 instance *User Data*: [Refer to 'whist-backened-userdata-script'](https://github.com/hiitsmatan/ec2-project-example/blob/main/whist-backend-userdata-script.sh)
 			
 2. Create EBS volume for mongodb consistent storage (gp2).
     - Make sure the instance is in the same availab zone as the EBS volume.
@@ -37,7 +37,7 @@
 	1. Security group rules:
 		- ssh port 22, source: My IP
 		- custom tcp port 8080, source: ALL 
-	2. EC2 instance *User Data*: [Refer to 'whist-frontend-userdata-script'](./whist-frontend-userdata-script.sh)
+	2. EC2 instance *User Data*: [Refer to 'whist-frontend-userdata-script'](https://github.com/hiitsmatan/ec2-project-example/blob/main/whist-frontend-userdata-script.sh)
 
 7. SSH into the EC2 and then:
 	- Run the following docker commands to start containers:
